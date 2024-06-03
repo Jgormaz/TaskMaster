@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <div id="TMicon">
+    <div>
+      <ion-icon id="AppLogo" name="cloudy-sharp"></ion-icon>
+      <p id="AppName">Task Master</p>
+    </div>
+    
+  </div>
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<h1><strong>Iniciar Sesión</strong></h1>
+<h2>Te damos la bienvenida</h2>
+<ion-list>
+  <ion-item>
+    <ion-input label="Email" labelPlacement="floating" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Password" labelPlacement="floating" type="password"></ion-input>
+  </ion-item>
+  <ion-button id="botonIngresar" fill="outline" expand="block" (click)="ingresar()" >Ingresar</ion-button>
+</ion-list>
+<p id="perfilSocial">Ingresa con tu perfil social</p>
+
+<ion-button id="botonFace" fill="outline">
+  <ion-icon name="logo-facebook"></ion-icon>
+  Facebook
+</ion-button>
+
+<ion-button id="botonTwit" fill="outline">
+  <ion-icon name="logo-twitter"></ion-icon>
+  Twitter
+</ion-button>
+<div id="recPass"> <h2>Recuperar contraseña</h2><h2 ><a style="color: crimson;" (click)="irAInscripcion()">Inscribirse</a></h2> </div>
+
+
+</ion-content>

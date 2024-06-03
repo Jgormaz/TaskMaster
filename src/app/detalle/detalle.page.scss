@@ -1,0 +1,21 @@
+.small-font-size .datetime-text {
+    font-size: 10px;
+  }
+
+  :root {
+    --ion-safe-area-top: 20px;
+    
+    // Para el modo claro
+    --ion-picker-min-height: 250px;
+    --ion-picker-max-height: 250px;
+  }
+  
+  body {
+    // Para el modo oscuro
+    --ion-picker-min-height: 250px;
+    --ion-picker-max-height: 250px;
+  }
+
+  :host ::ng-deep ion-datetime {
+    font-size: 14px !important;
+  }

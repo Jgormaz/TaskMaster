@@ -1,20 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<div class="ion-page" id="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-buttons slot="start">
+        <ion-menu-toggle>
+          <ion-button>
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+        </ion-menu-toggle>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="navCtrl.back()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-title>Hoy</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-content class="ion-padding">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+      <div class="container">
+
+        <div *ngFor="let p of progress" class="circle">
+          <svg>
+            <circle cx="50" cy="50" r="40"></circle>
+            <circle cx="50" cy="50" r="40" class="progress" [style.stroke]="p.color"
+            [style.strokeDashoffset]="calcOffset(p.value)"></circle>
+          </svg>
+          <div class="categoria">
+            <span class="category">{{ p.category }}</span>
+          </div>
+          <div class="percentage">
+            <span class="number">{{ p.value * 100 }}%</span>
+          </div>
+        </div>
+    
+      </div>
+      <ion-list>
+        <ion-item *ngFor="let activity of activities; let i = index" (click)="irADetalles(i)" lines="full">
+          <ion-note slot="start">{{activity.date}}</ion-note>
+          <ion-label [ngStyle]="{'color': activity.color}">{{activity.description}}</ion-label>
+          <ion-toggle slot="end" [(ngModel)]="activity.done"></ion-toggle>
+        </ion-item>
+      </ion-list>
+  </ion-content>
+</div>

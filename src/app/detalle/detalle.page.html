@@ -1,0 +1,59 @@
+
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-toggle>
+          <ion-button>
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+        </ion-menu-toggle>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="navCtrl.back()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-title>Hoy</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title [style.color]="actividad.color">{{actividad.description}}</ion-card-title>
+
+            <!-- Ícono de calendario al lado de la fecha que se puede modificar -->
+            <ion-item>
+              <ion-label>{{ actividad.date | customDate }}</ion-label>
+            </ion-item>
+            
+
+            <!-- Categoría como un combo que permite cambiarlo -->
+            <ion-item>
+              <ion-label>Categoría</ion-label>
+              <ion-select *ngIf="actividad" [(ngModel)]="actividad.categoria">
+                  <ion-select-option *ngFor="let category of categories" [value]="category">{{ category }}</ion-select-option>
+              </ion-select>
+          </ion-item>
+
+        </ion-card-header>
+
+        <ion-card-content>
+            Sub-Tareas:
+            <ion-list lines="full">
+              <ion-item *ngFor="let task of actividad?.subtareas">
+                <!-- Viñeta decorativa -->
+                <ion-icon slot="start" name="ellipse-outline"></ion-icon>
+                {{ task.titulo }}
+              </ion-item>
+            </ion-list>
+
+            ¿Ejecutada? <ion-toggle *ngIf="actividad" [(ngModel)]="actividad.done"></ion-toggle>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+</div>

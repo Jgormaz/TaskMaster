@@ -1,0 +1,74 @@
+
+h1 {
+    margin-left: 3%;
+    font-size: x-large;
+    color: rgb(60, 60, 60);
+}
+
+h2 {
+    margin-left: 3%;
+    margin-right: 3%;
+    font-size:medium;
+    color: black;
+}
+
+ion-icon {
+    font-size: 15px;
+    color: white;
+    padding-right: 5px;
+}
+
+#AppLogo {
+    font-size: 100px;
+    color: rgb(181, 181, 223);
+    display: block;
+}
+
+#botonTwit {
+    background: rgb(29, 161, 242);
+    width: 140px;    
+}
+
+#botonFace {
+    background: rgb(24, 119, 242);
+    color: white;
+    margin-right: 50px;
+    margin-left: 30px;
+    width: 140px;
+}
+
+#botonIngresar{
+    background:  rgb(114, 70, 70);
+    color: white;
+}
+
+ion-button {
+    background-color: rgb(154, 157, 162);
+    color: white;
+}
+
+#TMicon {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#AppName {
+    font-size: 18px;
+    color: darkslategrey;
+    display: block;
+    margin-top: 0px;
+}
+
+#perfilSocial{
+    width: 100%;
+    text-align: center;
+}
+
+#recPass{
+    display: flex;
+    justify-content: space-between;
+}
+

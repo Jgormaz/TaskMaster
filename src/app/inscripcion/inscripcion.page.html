@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <div id="TMicon">
+    <div>
+      <ion-icon id="AppLogo" name="cloudy-sharp"></ion-icon>
+      <p id="AppName">Task Master</p>
+    </div>
+    
+  </div>
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<h1><strong>Inscribirse</strong></h1>
+<ion-list>
+  <ion-item>
+    <ion-input label="Email" labelPlacement="floating" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Password" labelPlacement="floating" type="password"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label class="ion-text-wrap">
+      Acepto los Términos de Servicios y Política de Privacidad
+    </ion-label>
+    <ion-checkbox slot="start"></ion-checkbox>
+  </ion-item>
+  <ion-button id="botonIngresar" fill="outline" expand="block" (click)="continuar()">Continuar</ion-button>
+</ion-list>
+
+<div id="recPass"> <h2>¿Tiene una cuenta?</h2><h2><a style="color: crimson;" (click)="irALogin()">Iniciar Sesión</a></h2> </div>
+
+
+</ion-content>

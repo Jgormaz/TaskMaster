@@ -1,0 +1,61 @@
+
+
+<div class="ion-page" id="main-content">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-toggle>
+          <ion-button>
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+        </ion-menu-toggle>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="navCtrl.back()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-title>Hoy</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input [(ngModel)]="descripcionTarea" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Categoría</ion-label>
+      <ion-select (ionChange)="manejarCambioDeCategoria($event)">
+        <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.nombre">{{ categoria.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Sub Tareas</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let tarea of tareas; let i = index">
+        <ion-label position="floating">Sub Tarea {{ i + 1 }}</ion-label>
+        <ion-input type="text" [ngModel]="tareaValores[i]" (ngModelChange)="actualizarTarea(i, $event)"></ion-input>
+        <ion-icon name="add" slot="end" *ngIf="i === tareas.length - 1" (click)="agregarTarea()"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-datetime presentation="date-time" [preferWheel]="true" [(ngModel)]="dateValue"></ion-datetime>
+    </ion-item>
+
+    <ion-button *ngIf="colorSeleccionado !== '' && descripcionTarea !== ''" [ngStyle]="{'--background': colorSeleccionado}" expand="full" type="button"  (click)="agregarNuevaTarea()">
+      Agregar nueva tarea
+    </ion-button>
+
+
+</ion-content>
+</div>
+
