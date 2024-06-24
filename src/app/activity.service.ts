@@ -6,12 +6,12 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ActivityService {
+export class ActivityService {  //Esta clase se reemplazó por BdserviceService
     activities = [
-    { date: '2024-06-03T08:00:00', categoria: 'Personal', subtareas: [{titulo:'preparar'},{titulo:'comer'}], description: 'Desayunar', color: '#4CAF50', done: true },
-    { date: '2024-06-03T09:00:00', categoria: 'Trabajo', subtareas: [{titulo:'sin subtareas'}],description: 'Reunión de equipo', color: '#2196F3', done: true },
-    { date: '2024-06-03T13:00:00', categoria: 'Personal', subtareas: [{titulo:'preparar'},{titulo:'comer'}],description: 'Almuerzo', color: '#4CAF50', done: false },
-    { date: '2024-06-03T18:00:00', categoria: 'Estudios', subtareas: [{titulo:'ppt'},{titulo:'app'},{titulo:'test'}],description: 'Prueba App Móviles', color: '#F44336', done: false },
+    { date: '2024-06-03T08:00:00', categoria: 'Personal', subtareas: 'preparar|comer', description: 'Desayunar', color: '#4CAF50', done: true },
+    { date: '2024-06-03T09:00:00', categoria: 'Trabajo', subtareas: 'sin subtareas',description: 'Reunión de equipo', color: '#2196F3', done: true },
+    { date: '2024-06-03T13:00:00', categoria: 'Personal', subtareas: 'preparar|comer',description: 'Almuerzo', color: '#4CAF50', done: false },
+    { date: '2024-06-03T18:00:00', categoria: 'Estudios', subtareas: 'pp|app|test',description: 'Prueba App Móviles', color: '#F44336', done: false },
     // Añade más actividades aquí
   ];
 
@@ -52,7 +52,7 @@ export interface SubTask {
 export interface Activity {
   date: string;
   categoria: string;
-  subtareas: SubTask[];
+  subtareas: string;
   description: string;
   color: string;
   done: boolean;

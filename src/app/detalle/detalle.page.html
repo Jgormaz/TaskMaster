@@ -24,11 +24,11 @@
   <ion-content>
     <ion-card>
         <ion-card-header>
-            <ion-card-title [style.color]="actividad.color">{{actividad.description}}</ion-card-title>
+            <ion-card-title [style.color]="actividad.color">{{actividad.descripcion}}</ion-card-title>
 
             <!-- Ícono de calendario al lado de la fecha que se puede modificar -->
             <ion-item>
-              <ion-label>{{ actividad.date | customDate }}</ion-label>
+              <ion-label>{{ actividad.fecha | customDate }}</ion-label>
             </ion-item>
             
 
@@ -45,14 +45,14 @@
         <ion-card-content>
             Sub-Tareas:
             <ion-list lines="full">
-              <ion-item *ngFor="let task of actividad?.subtareas">
+              <ion-item *ngFor="let task of listaSubtareas">
                 <!-- Viñeta decorativa -->
                 <ion-icon slot="start" name="ellipse-outline"></ion-icon>
-                {{ task.titulo }}
+                {{ task }}
               </ion-item>
             </ion-list>
 
-            ¿Ejecutada? <ion-toggle *ngIf="actividad" [(ngModel)]="actividad.done"></ion-toggle>
+            ¿Ejecutada? <ion-toggle *ngIf="actividad" [(ngModel)]="actividad.done" (ngModelChange)="actualizarActividad()"></ion-toggle>
         </ion-card-content>
     </ion-card>
 </ion-content>

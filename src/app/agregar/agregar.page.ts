@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivityService } from '../activity.service';
-import { Activity } from '../activity.service';
-import { Subscription } from 'rxjs/internal/Subscription';
+//import { Activity } from '../activity.service';
+//import { Subscription } from 'rxjs/internal/Subscription';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { BdserviceService } from '../services/bdservice.service';
 
 @Component({
   selector: 'app-agregar',
@@ -12,23 +13,23 @@ import { Router } from '@angular/router';
 })
 export class AgregarPage implements OnInit {
 
-  private activitiesSub: Subscription = new Subscription();
-  activities: Activity[] = [];
+  //private activitiesSub: Subscription = new Subscription();
+  //activities: Activity[] = [];
   dateValue: string = new Date().toISOString();
   descripcionTarea = '';
 
-  constructor(private activityService: ActivityService, public navCtrl: NavController, private router: Router) { }
+  constructor(private activityService: ActivityService, public navCtrl: NavController, private router: Router, private servicioBD: BdserviceService) { }
 
   ngOnInit() {
-    this.activitiesSub = this.activityService.getActivityUpdateListener()
+    /*this.activitiesSub = this.activityService.getActivityUpdateListener()
     .subscribe((activities: Activity[]) => {
       this.activities = activities;
     });
-  this.activityService.getActivities();
+  this.activityService.getActivities();*/
   }
 
   ngOnDestroy() {
-    this.activitiesSub.unsubscribe();
+    //this.activitiesSub.unsubscribe();
   }
 
   categorias = [
@@ -72,17 +73,25 @@ export class AgregarPage implements OnInit {
 
   agregarNuevaTarea() {
     let nuevaTarea = {
-      date: this.dateValue,  // asegúrate de que esto esté en el formato correcto
-      categoria: this.categoriaSeleccionada,  // usa el valor que estás guardando de tu ion-select
-      subtareas: this.tareas.map(tarea => ({ titulo: tarea })),  // suponiendo que 'tareas' es un array de strings y convertimos cada Tarea en un objeto {titulo: string}
+      date: this.dateValue, 
+      categoria: this.categoriaSeleccionada,  
+      subtareas: this.tareaValores.join('|'), 
       description: this.descripcionTarea,
       color: this.colorSeleccionado,
-      done: false  // puedes ajustar esto como necesites
-      
+      done: false  
     };
-    this.router.navigate(['/detalle', -1]);
-    this.activityService.activities.push(nuevaTarea);
+    console.log("Insertar tarea ...");
+    this.servicioBD.insertarActividad(nuevaTarea.date, nuevaTarea.categoria, nuevaTarea.subtareas, nuevaTarea.description, nuevaTarea.color, +nuevaTarea.done).then(newId => { 
+      // ahora 'newId' es el ID del nuevo registro insertado
+      console.log("Tarea insertada "+newId);
+      this.router.navigate(['/detalle', newId]);
+    }).catch(error => {
+      console.error('Error guardando actividad: ', error);
+      // Mostrar error al usuario 
+    });
   }
+
+
 }
 
 
