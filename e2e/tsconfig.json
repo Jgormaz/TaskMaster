@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "target": "es2018",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "sourceMap": true,
+      "outDir": "../.tsc-e2e",
+      "rootDir": ".",
+      "strict": true,
+      "types": [
+        "jasmine",
+        "jasminewd2",
+        "node"
+      ]
+    },
+    "exclude": [
+      "../node_modules",
+      "**/*.spec.ts",
+      "**/*.d.ts",
+      "../*.spec.ts"
+    ]
+  }
+  

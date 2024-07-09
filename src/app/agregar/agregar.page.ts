@@ -51,7 +51,7 @@ export class AgregarPage implements OnInit {
     }
   }
 
-  tareas: string[] = [''];  
+  tareas: string[] = [''];
   tareaValores: string[] = [''];
 
   agregarTarea() {
@@ -73,22 +73,29 @@ export class AgregarPage implements OnInit {
 
   agregarNuevaTarea() {
     let nuevaTarea = {
-      date: this.dateValue, 
-      categoria: this.categoriaSeleccionada,  
-      subtareas: this.tareaValores.join('|'), 
+      date: this.dateValue,
+      categoria: this.categoriaSeleccionada,
+      subtareas: this.tareaValores.join('|'),
       description: this.descripcionTarea,
       color: this.colorSeleccionado,
-      done: false  
+      done: false
     };
     console.log("Insertar tarea ...");
-    this.servicioBD.insertarActividad(nuevaTarea.date, nuevaTarea.categoria, nuevaTarea.subtareas, nuevaTarea.description, nuevaTarea.color, +nuevaTarea.done).then(newId => { 
-      // ahora 'newId' es el ID del nuevo registro insertado
-      console.log("Tarea insertada "+newId);
-      this.router.navigate(['/detalle', newId]);
-    }).catch(error => {
-      console.error('Error guardando actividad: ', error);
-      // Mostrar error al usuario 
-    });
+    console.log("Categoría ... [" + this.categoriaSeleccionada + "]");
+    if (this.categoriaSeleccionada != "") {
+      this.servicioBD.insertarActividad(nuevaTarea.date, nuevaTarea.categoria, nuevaTarea.subtareas, nuevaTarea.description, nuevaTarea.color, +nuevaTarea.done).then(newId => {
+        // ahora 'newId' es el ID del nuevo registro insertado
+        console.log("Tarea insertada " + newId);
+        this.router.navigate(['/detalle', newId]);
+      }).catch(error => {
+        console.error('Error guardando actividad: ', error);
+
+        // Mostrar error al usuario 
+      });
+    }
+    else {
+      this.router.navigate(['/detalle']);
+    }
   }
 
 

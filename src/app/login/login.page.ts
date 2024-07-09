@@ -11,6 +11,7 @@ import { AlertController, ToastController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
   username!: string;
+  password!: string;
 
   constructor(private alertController: AlertController, private toastController: ToastController, private router: Router, private auth: AuthService) { }
 
@@ -19,7 +20,8 @@ export class LoginPage implements OnInit {
 
   ingresar() {
     this.login();
-    this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
+    
   }
   
   irAInscripcion() {
